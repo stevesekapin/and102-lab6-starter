@@ -12,25 +12,16 @@ import com.bumptech.glide.Glide
 
 const val CAMPGROUND_EXTRA = "CAMPGROUND_EXTRA"
 
-class CampgroundAdapter(private val context: Context, private val campgrounds: List<Campground>) :
-    RecyclerView.Adapter<CampgroundAdapter.ViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_campground, parent, false)
-        return ViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(campgrounds[position])
-    }
-
-    override fun getItemCount() = campgrounds.size
+class CampgroundAdapter(
+    private val context: Context,
+    private val campgrounds: List<Campground>
+) : RecyclerView.Adapter<CampgroundAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        private val campgroundImageView: ImageView = itemView.findViewById(R.id.itemCampgroundImage)
-        private val campgroundNameTextView: TextView = itemView.findViewById(R.id.itemCampgroundTitle)
-        private val campgroundDescriptionTextView: TextView = itemView.findViewById(R.id.itemCampgroundDescription)
-        private val campgroundLatLongTextView: TextView = itemView.findViewById(R.id.itemCampgroundLatLong)
+        private val campgroundImageView: ImageView = itemView.findViewById(R.id.campgroundImage)
+        private val campgroundNameTextView: TextView = itemView.findViewById(R.id.campgroundName)
+        private val campgroundDescriptionTextView: TextView = itemView.findViewById(R.id.campgroundDescription)
+        private val campgroundLatLongTextView: TextView = itemView.findViewById(R.id.campgroundLatLong)
 
         init {
             itemView.setOnClickListener(this)
@@ -47,10 +38,21 @@ class CampgroundAdapter(private val context: Context, private val campgrounds: L
         }
 
         override fun onClick(v: View?) {
-            val campground = campgrounds[absoluteAdapterPosition]
+            val campground = campgrounds[adapterPosition]
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra(CAMPGROUND_EXTRA, campground)
             context.startActivity(intent)
         }
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.item_campground, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(campgrounds[position])
+    }
+
+    override fun getItemCount(): Int = campgrounds.size
 }
