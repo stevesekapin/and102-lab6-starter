@@ -54,12 +54,6 @@ Retrieves data using AsyncHttpClient
 
 Parses JSON responses from the API
 
-GIF Demonstration
-
-Below is a GIF demonstrating the app running:
-
-(Insert your recorded GIF here showing the app running)
-
 Technologies Used
 
 Kotlin
@@ -82,5 +76,9 @@ Steve Sekapin Mbouze
 Computer Science Student
 Virginia State University
 
+
+GIF Demonstration
+
+Below is a GIF demonstrating the link of the app running:
 
 https://imgur.com/a/mL3kmKm.gif
